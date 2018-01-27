@@ -1,0 +1,38 @@
+.svg-icon {
+	display: block;
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
+
+.svg-icon svg {
+	display: block;
+	position: relative;
+	width: 100%;
+	height: 100%;
+	max-height: 100%;
+	max-width: 100%;
+	fill: transparent;
+	stroke: currentColor;
+	stroke-width: 21px;
+}
+
+.svg-icon svg.filled-svg {
+	fill: currentColor;
+	stroke-width: 0px;
+}
+
+.svg-icon svg.fill {
+	fill: currentColor;
+}
+
+.svg-icon .svg-bg {
+	width: 80%;
+	height: 70%;
+	display: inline-block;
+	position: absolute;
+	background: #fff;
+	border-radius: 50%;
+	left: 10%;
+	top: 15%;
+}

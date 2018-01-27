@@ -1,0 +1,39 @@
+code-editor{
+    position: relative;
+    flex-grow: 1;
+    min-height: 100%;
+    line-height:21px;
+}
+
+code-editor > bound-element{
+    display: block;
+    padding: 7px;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+}
+
+code-editor textarea{
+	position: relative;
+	padding: 0px;
+	font-family: monospace;
+	color: transparent;
+	z-index: 2;
+	background: transparent;
+	width: 100%;
+	height: 100%;
+	resize: none;
+	caret-color: #fff;
+	line-height:21px;
+}
+
+code-editor.ace-twilight {
+    background-color: #0e1215;
+}
+
+code-editor.ace-twilight .ace_gutter {
+    background: #11171b;
+    color: #E2E2E2;
+}

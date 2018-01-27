@@ -1,0 +1,361 @@
+html,body{
+	margin: 0px;
+	background: #13191d;
+	color:#9bacb5;
+	font-family: sans-serif;
+	font-size: 14px;
+}
+
+body *{
+	box-sizing: border-box;
+}
+
+input,textarea,button{
+	background: rgba(48, 73, 86, 0.48);
+	border: none;
+	outline: none !important;
+	font-size: 14px;
+	font-family: sans-serif;
+	color: #fff;
+	padding: 7px;
+	width: 100%;
+}
+
+#page-container{
+	display: flex;
+	height: 100%;
+	position: fixed;
+	width: 100%;
+}
+
+#sidebar{
+    width: 70px;
+}
+
+#sidebar>bound-element{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#sidebar .tab{
+	flex-grow: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	background: #123b52;
+	cursor: pointer;
+	transition: background .2s,color .2s;
+	flex-direction: column;
+	padding: 14px;
+	transition: background .2s, color .2s;
+}
+
+#sidebar .tab:hover{
+	background: #245c7b;
+	color: #fff;
+}
+
+#sidebar .code .tab-code,
+#sidebar .terminal .tab-terminal{
+    background: #1e4f6b;
+    color: #fff;
+}
+
+#main-content{
+	flex-grow:1;
+}
+
+#terminal-content,
+#code-content,
+#command-line-container{
+	display: block;
+    height: 100%;
+}
+
+.command-line-editor{
+	display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.command-line-output{
+	flex-grow: 1;
+	white-space: pre;
+	font-size: 12px;
+	font-family: monospace;
+	overflow: auto;
+	display: flex;
+	flex-direction:column;
+	padding: 7px;
+}
+
+.command-line-input{
+	display: flex;
+	align-items: center;
+	padding: 7px;
+}
+
+.command-line-input input{
+	background: transparent;
+}
+
+.command-line-pointer{
+	color: #ca6d1e;
+}
+
+
+.history-command{
+	display: block;
+}
+
+.history-command-text{
+	font-family: monospace;
+	font-size: 21px;
+	font-weight: bold;
+	padding: 0px 3px 0px 0px;
+	display: inline-block;
+	color: #fff;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#file-navigator{
+  width: 21%;
+  display: block;
+  height: 100%;
+  background: #132631;
+  text-align: left;
+  color: rgb(147, 165, 178);
+  font-size: 12px;
+}
+
+#file-navigator .directory,
+#file-navigator .file{
+    box-shadow: 0 -1px 0 rgba(11, 22, 29, 0.7);
+}
+
+#file-navigator .directory>bound-element,
+#file-navigator .file>bound-element{
+    padding: 7px 14px 7px 21px;
+    cursor: pointer;
+    position: relative;
+	display: flex;
+	align-items: center;
+}
+
+#file-navigator .directory>bound-element:before{
+	content: "";
+	border: 5px solid transparent;
+	border-left-color: #1e4f6b;
+	width: 0px;
+	height: 0px;
+	display: inline-block;
+	margin-left: -11px;
+}
+
+#file-navigator .directory{
+    background: #102029;
+}
+
+#file-navigator .file>bound-element:before{
+	content: "f";
+	font-size: 10px;
+	color: #aaa;
+	display: inline-block;
+	width: 21px;
+    margin-left: -21px;
+    text-align: center;
+}
+
+#file-navigator .file>bound-element.txt:before{
+	content: "T";
+	color: #0094c2;
+}
+
+#file-navigator .file>bound-element.json:before{
+	content: "{}";
+	color: #ebff00;
+	font-family: monospace;
+}
+
+#file-navigator .file>bound-element.js:before{
+	content: "JS";
+	color: #c200a7;
+}
+
+#file-navigator .file>bound-element.css:before,
+#file-navigator .file>bound-element.less:before,
+#file-navigator .file>bound-element.sass:before{
+	content: "#";
+	font-size: 12px;
+	color: #0ad400;
+}
+
+#file-navigator .file>bound-element.html:before{
+	content: "</>";
+	color: #ff9100;
+}
+
+
+
+
+tree-element>div>if-element{
+	display:flex;
+	justify-content: space-between;
+	align-items: center;
+	position: relative;
+}
+
+.context-toggler{
+	width: 24px;
+	padding: 0px 7px;
+    display: flex;
+    cursor: pointer;
+}
+
+.context-menu{
+    position: absolute;
+    width: 41%;
+    top: 35%;
+    right: 3.5px;
+    background: #fff;
+    z-index: -1;
+    opacity: 0;
+	pointer-events: none;
+	transition: opacity .2s;
+}
+
+.context-toggler:hover + .context-menu,
+.context-menu:hover{
+	z-index: 1;
+	opacity: 1;
+	pointer-events: all;
+}
+
+.context-menu-item{
+	padding: 7px;
+    color: #1e4f6b;
+    cursor: pointer;
+    background: #fff;
+    transition: background .2s, color .2s;
+}
+
+.context-menu-item:hover{
+    color: #fff;
+    background: #1e4f6b;
+}
+
+
+
+
+
+#code-editor-tabs{
+	display: flex;
+	width: 100%;
+	padding-bottom: 7px;
+}
+
+#code-editor-tabs>bound-repeat{
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    overflow: auto;
+}
+
+#code-content{
+	display: flex;
+}
+
+#code-editor{
+	flex-grow: 1;
+	display: flex;
+    flex-direction: column;
+}
+
+#code-editor-content{
+	flex-grow:1;
+	overflow: auto;
+	position: relative;
+}
+
+#code-editor-content .file-content{
+    display: flex;
+    align-items: flex-start;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top:0px;
+    left: 0px;
+    z-index: -1;
+    pointer-events: none;
+    opacity:0;
+}
+
+#code-editor-content .file-content.active{
+    z-index: 0;
+    pointer-events: all;
+    opacity:1;
+}
+
+.line-number{
+	padding: 7px;
+	background: #0e1215;
+	height: 100%;
+	font-family: monospace;
+}
+
+code-editor pre{
+	margin: 0px;
+	padding: 7px;
+}
+
+.code-tab{
+	background: #123b52;
+	padding: 7px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	border: 1px solid #0c1013;
+}
+
+.active>.code-tab{
+	background: #1e4f6b;
+	color: #fff;
+}
+
+.code-tab svg-icon{
+	width: 10px;
+	display: block;
+	margin-right: 7px;
+	height: 10px;
+}
+
+
+/*.token.operator, .token.entity, .token.url, .language-css .token.string, .style .token.string{*/
+/*	background:transparent;*/
+/*}*/
+
+.line-number{
+	line-height:21px;
+}
+
+.line-number > bound-repeat{
+	display: flex;
+	flex-direction: column;
+}

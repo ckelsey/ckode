@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<!--<link rel="stylesheet" href="/node_modules/prismjs/themes/prism.css" />-->
+	<!--<link rel="stylesheet" href="/node_modules/prismjs/themes/prism-twilight.css" />-->
+	<link rel="stylesheet" href="/dist/ckode.min.css" />
+	<script src="dist/ckode.min.js"></script>
+</head>
+
+<body>
+	<div id="page-container">
+		<div id="sidebar">
+			<bound-element bound-class="@App.activeTab">
+				
+				<div class="tab tab-code" onclick="window.ckode.App.activateTab('code')">
+					<svg-icon type="code"></svg-icon>
+					<div>code</div>
+				</div>
+				
+				<div class="tab tab-terminal" onclick="window.ckode.App.activateTab('terminal')">
+					<svg-icon type="terminal"></svg-icon>
+					<div>terminal</div>
+				</div>
+				
+			</bound-element>
+		</div>
+		
+		<div id="main-content">
+			
+			<if-element id="terminal-content" model="@App.activeTab" equals="terminal" css-display="true">
+				<div id="command-line-container">
+					<div class="command-line-editor">
+						
+						<bound-element class="command-line-output" content="@Terminal.history"></bound-element>
+						
+						<div class="command-line-input">
+							<div class="command-line-pointer">&#8594;</div>
+							<input class="command-line-input-field" type="text" onkeyup="window.ckode.Terminal.commandKeyup(event)">
+						</div>
+					</div>
+				</div>
+			</if-element>
+			
+			<if-element id="code-content" model="@App.activeTab" equals="code" css-display="true">
+				<div id="file-navigator">
+					<tree-element model="@Directory.directory" path-key="$thisPath">
+						<div>
+							<if-element model="$thisPath.ext" class="file">
+								<bound-element content="$thisPath.name" bound-class="$thisPath.ext" onclick="window.ckode.File.openFile('$thisPath')"></bound-element>
+								<div class="context">
+									<div class="context-toggler">
+										<svg-icon type="circle"></svg-icon>
+										<svg-icon type="circle"></svg-icon>
+										<svg-icon type="circle"></svg-icon>
+									</div>
+									<div class="context-menu">
+										<div class="context-menu-item">Delete</div>
+										<div class="context-menu-item" onclick="window.ckode.Directory.rename('$thisPath')">Rename</div>
+									</div>
+								</div>
+							</if-element>
+							
+							<if-element model="$thisPath.children" class="directory">
+								<bound-element content="$thisPath.name"></bound-element>
+								<div class="context">
+									<div class="context-toggler">
+										<svg-icon type="circle"></svg-icon>
+										<svg-icon type="circle"></svg-icon>
+										<svg-icon type="circle"></svg-icon>
+									</div>
+									<div class="context-menu">
+										<div class="context-menu-item">New file</div>
+										<div class="context-menu-item">New folder</div>
+										<div class="context-menu-item">Delete</div>
+										<div class="context-menu-item">Rename</div>
+									</div>
+								</div>
+							</if-element>
+						</div>
+					</tree-element>
+				</div>
+				
+				<div id="code-editor">
+					<div id="code-editor-tabs">
+						<bound-repeat model="@File.files" delimiter="$fileKey">
+							<bound-element bound-class="@File.files.$fileKey.active">
+								<div class="code-tab" onclick="window.ckode.File.activateFile(event)" index="$fileKey">
+									<if-element css-display="true" model="@File.files.$fileKey.isModified" equals="true">
+										<svg-icon type="circle" onclick="window.ckode.File.closeFile(event, '$fileKey')"></svg-icon>
+									</if-element>
+									
+									<if-element css-display="true" model="@File.files.$fileKey.isModified" not="true" equals="true">
+										<svg-icon type="close" onclick="window.ckode.File.closeFile(event, '$fileKey')"></svg-icon>
+									</if-element>
+									
+									<bound-element content="@File.files.$fileKey.name" index="$fileKey"></bound-element>
+								</div>
+							</bound-element>
+						</bound-repeat>
+					</div>
+					<div id="code-editor-content">
+						<bound-repeat model="@File.files" delimiter="$fileKey">
+							<div class="file-content" index="$fileKey">
+								<code-editor file="@File.files.$fileKey" codeupdate="@File.updateCode"></code-editor>
+							</div>
+						</bound-repeat>
+					</div>
+				</div>
+			</if-element>
+		</div>
+	</div>
+	
+	<popup-message active="@App.popupMessage.active" message="@App.popupMessage.message" buttons="@App.popupMessage.buttons" type="@App.popupMessage.type" icon="@App.popupMessage.icon"></popup-message>
+</body>
+
+</html>

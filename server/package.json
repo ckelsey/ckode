@@ -1,0 +1,11 @@
+{
+  "name": "ckode-server",
+  "version": "1.0.0",
+  "main": "app.js",
+  "dependencies": {
+    "file-type": "^6.2.0",
+    "mkdirp": "^0.5.1",
+    "read-chunk": "^2.1.0",
+    "socket.io": "^2.0.4"
+  }
+}
