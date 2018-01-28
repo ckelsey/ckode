@@ -126,6 +126,8 @@ class File{
 			file.originalContent = file.content
 			E1.setModel(null, "@File.files." + index + ".isModified", false)
 			
+			console.log(file, this.files)
+			
 			var xhr = new XMLHttpRequest()
 			
 			xhr.onreadystatechange = () => {
@@ -153,12 +155,13 @@ class File{
 	}
 	
 	openFile(el){
+		var _this = window.ckode.File
 		var file = E1.getModel(null, el)
 		var fileIndex
 		
-		for(var i in this.files){
-			if(this.files[i]){
-				if(file.path === this.files[i].path){
+		for(var i in _this.files){
+			if(_this.files[i]){
+				if(file.path === _this.files[i].path){
 					E1.setModel(null, "@File.activeFile", i)
 					fileIndex = i
 					break
@@ -182,14 +185,14 @@ class File{
 				})
 				
 				
-				this.files[btoa(file.path)] = file
+				_this.files[btoa(file.path)] = file
 				
-				E1.setModel(null, "@File.files", this.files)
+				E1.setModel(null, "@File.files", _this.files)
 				
-				var keys = Object.keys(this.files)
+				var keys = Object.keys(_this.files)
 				var index = fileIndex !== undefined ? fileIndex : keys[keys.length - 1]
-				this.activeFile = index
-				this.activateFileByIndex()
+				_this.activeFile = index
+				_this.activateFileByIndex()
 			}
 		}
 		

@@ -148,18 +148,21 @@ input,textarea,button{
 #file-navigator .directory,
 #file-navigator .file{
     box-shadow: 0 -1px 0 rgba(11, 22, 29, 0.7);
+    background: #132631;
 }
 
-#file-navigator .directory>bound-element,
-#file-navigator .file>bound-element{
+#file-navigator .directory>.item-container>.item-name,
+#file-navigator .file>.item-name{
     padding: 7px 14px 7px 21px;
     cursor: pointer;
     position: relative;
 	display: flex;
 	align-items: center;
+	word-break: break-word;
+	white-space: pre-wrap;
 }
 
-#file-navigator .directory>bound-element:before{
+#file-navigator .directory>.item-container>.item-name:before{
 	content: "";
 	border: 5px solid transparent;
 	border-left-color: #1e4f6b;
@@ -171,9 +174,38 @@ input,textarea,button{
 
 #file-navigator .directory{
     background: #102029;
+    flex-wrap: wrap;
 }
 
-#file-navigator .file>bound-element:before{
+#file-navigator .directory .children{
+    opacity: 0;
+    pointer-events:none;
+    position: relative;
+    z-index: -1;
+    height: auto;
+    height: 0px;
+    transition: opacity .2s;
+}
+
+#file-navigator .directory .children.active{
+	opacity: 1;
+    pointer-events:all;
+    z-index: 0;
+    height: auto;
+}
+
+#file-navigator .directory .item-container{
+	display: flex;
+	flex-wrap:nowrap;
+	min-width: 100%;
+}
+
+#file-navigator .directory .children{
+	width: 100%;
+	padding-left: 14px;
+}
+
+#file-navigator .file>.item-name:before{
 	content: "f";
 	font-size: 10px;
 	color: #aaa;
@@ -183,39 +215,53 @@ input,textarea,button{
     text-align: center;
 }
 
-#file-navigator .file>bound-element.txt:before{
+#file-navigator .file>.item-name.txt:before{
 	content: "T";
 	color: #0094c2;
 }
 
-#file-navigator .file>bound-element.json:before{
+#file-navigator .file>.item-name.json:before{
 	content: "{}";
 	color: #ebff00;
 	font-family: monospace;
 }
 
-#file-navigator .file>bound-element.js:before{
+#file-navigator .file>.item-name.js:before{
 	content: "JS";
 	color: #c200a7;
 }
 
-#file-navigator .file>bound-element.css:before,
-#file-navigator .file>bound-element.less:before,
-#file-navigator .file>bound-element.sass:before{
+#file-navigator .file>.item-name.css:before,
+#file-navigator .file>.item-name.less:before,
+#file-navigator .file>.item-name.scss:before{
 	content: "#";
 	font-size: 12px;
 	color: #0ad400;
 }
 
-#file-navigator .file>bound-element.html:before{
+#file-navigator .file>.item-name.html:before{
 	content: "</>";
 	color: #ff9100;
+}
+
+tree-element{
+	overflow: auto;
+	height: 100%;
+	width: 100%;
+	display: block;
+}
+
+.tree-container{
+	display: inline-flex;
+	flex-direction: column;
+	min-width: 100%;
 }
 
 
 
 
-tree-element>div>if-element{
+.tree-container>*,
+.tree-container>*>.item-container{
 	display:flex;
 	justify-content: space-between;
 	align-items: center;

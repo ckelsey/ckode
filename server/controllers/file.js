@@ -4,11 +4,7 @@ const path = require("path")
 const utils = require("../utils")
 
 module.exports = function (res, headers, body, query, files) {
-	var url = config.cwd
-
-	if (query.path) {
-		url = path.join(url, query.path)
-	}
+	var url = path.resolve(query.path)
 
 	fs.stat(url, function (err, stat) {
 		if (err) {

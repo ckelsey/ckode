@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "app.js",
   "dependencies": {
+    "directory-tree": "^2.0.0",
     "file-type": "^6.2.0",
     "mkdirp": "^0.5.1",
     "read-chunk": "^2.1.0",

@@ -6,13 +6,7 @@ const getDirName = path.dirname
 const utils = require("../utils")
 
 module.exports = function (res, headers, body, query, files) {
-	var url = config.cwd
-
-	if (body.path) {
-		url = path.join(url, body.path)
-	}
-	
-	console.log(url, body.content)
+	var url = path.resolve(body.path)
 	
 	mkdirp(getDirName(url), function (err) {
 		if (err) return cb(err);

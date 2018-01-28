@@ -47,41 +47,7 @@
 			
 			<if-element id="code-content" model="@App.activeTab" equals="code" css-display="true">
 				<div id="file-navigator">
-					<tree-element model="@Directory.directory" path-key="$thisPath">
-						<div>
-							<if-element model="$thisPath.ext" class="file">
-								<bound-element content="$thisPath.name" bound-class="$thisPath.ext" onclick="window.ckode.File.openFile('$thisPath')"></bound-element>
-								<div class="context">
-									<div class="context-toggler">
-										<svg-icon type="circle"></svg-icon>
-										<svg-icon type="circle"></svg-icon>
-										<svg-icon type="circle"></svg-icon>
-									</div>
-									<div class="context-menu">
-										<div class="context-menu-item">Delete</div>
-										<div class="context-menu-item" onclick="window.ckode.Directory.rename('$thisPath')">Rename</div>
-									</div>
-								</div>
-							</if-element>
-							
-							<if-element model="$thisPath.children" class="directory">
-								<bound-element content="$thisPath.name"></bound-element>
-								<div class="context">
-									<div class="context-toggler">
-										<svg-icon type="circle"></svg-icon>
-										<svg-icon type="circle"></svg-icon>
-										<svg-icon type="circle"></svg-icon>
-									</div>
-									<div class="context-menu">
-										<div class="context-menu-item">New file</div>
-										<div class="context-menu-item">New folder</div>
-										<div class="context-menu-item">Delete</div>
-										<div class="context-menu-item">Rename</div>
-									</div>
-								</div>
-							</if-element>
-						</div>
-					</tree-element>
+					<tree-element model="@Directory.directory" path-key="$thisPath" file-click="@File.openFile"></tree-element>
 				</div>
 				
 				<div id="code-editor">

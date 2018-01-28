@@ -116,6 +116,8 @@ class IfElement{
 			
 			el.style.removeProperty("display")
 		}
+		
+		E1.scan(el)
 	}
 }
 
